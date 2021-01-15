@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+<div class="container">
+  @model PierresAuth.Models.Treat
+
+  <h2>Are you sure you want to remove this baked good?</h2>
+  <hr />
+  <h4>Baked Good: @Html.DisplayFor(model => model.TreatType)</h4> <br>
+  @using (Html.BeginForm())
+  {
+    <input type="submit" value="Delete" /><br><br>
+  }
+  @Html.ActionLink("Baked Goods", "Index")
+</div>

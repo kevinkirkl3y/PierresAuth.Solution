@@ -16,7 +16,7 @@
     <ul class="no-bullets">
       @foreach (var join in Model.Treats)
       {
-        <li>@join.Treat.TreatType</li>
+        <li>@join.Treat.TreatType</li><br>
         @using (Html.BeginForm("DeleteTreat", "Flavors"))
         {
           @Html.Hidden("joinId", @join.FlavorTreatId)

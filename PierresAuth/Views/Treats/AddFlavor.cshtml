@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+<div class="container">
+  @model PierresAuth.Models.Treat
+<h2>@Html.DisplayFor(model => model.TreatType) Flavor Profiles:</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.TreatId)
+
+  @Html.Label("Select Flavor Profile")<br>
+  @Html.DropDownList("FlavorId")
+
+  <br><br><input type="submit" value="Save" />
+}
+<br><p>@Html.ActionLink("Return to List of Baked Goods", "Index")</p>
+
+</div>

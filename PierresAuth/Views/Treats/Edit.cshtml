@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+<div class="container">
+  @model PierresAuth.Models.Treat;
+  <h2>Edit Baked Good Information</h2>
+  <hr />
+
+  @using (Html.BeginForm())
+  {
+    @Html.HiddenFor(model => model.TreatId)
+
+    @Html.Label("TreatType")<br>
+    @Html.TextBoxFor(model => model.TreatType)<br>
+
+    <br><input type="submit" value="Save" />
+  }
+  <br><p>@Html.ActionLink("Return to Baked Goods List", "Index")</p>
+</div>

@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+@model PierresAuth.Models.Treat;
+<div class="container">
+  <h2>@Html.DisplayFor(model => model.TreatType)</h2>
+  <hr />
+  
+  @if (@Model.Flavors.Count == 0)
+  {
+    <h4>No flavor profiles have been noted.</h4>
+  }
+  else
+  {
+    <h4>Flavor Profiles:</h4>
+    <ul class="no-bullets">
+      @foreach (var join in Model.Flavors)
+      {
+        <li>@join.Flavor.FlavorType</li><br>
+        @using (Html.BeginForm("DeleteFlavor", "Treats"))
+        {
+          @Html.Hidden("joinId", @join.FlavorTreatId)
+          <input type="submit" value="Delete" />
+        }
+      }
+    </ul>
+  }
+  <br><p>@Html.ActionLink("Return to List of Baked Goods", "Index")</p>
+  <br><p>@Html.ActionLink("Update Baked Good", "Edit", new {id = Model.TreatId})</p>
+  <br><p>@Html.ActionLink("Remove Baked Good", "Delete", new {id = Model.TreatId})</p>
+  <br><p>@Html.ActionLink("Add Related Flavor Profiles", "AddFlavor", new {id = Model.TreatId})</p>
+  <br><p>@Html.ActionLink("Homepage", "Index", "Home")</p>
+</div>
