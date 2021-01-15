@@ -70,7 +70,7 @@ namespace PierresAuth.Controllers
     {
       if(FlavorId != 0 )
       {
-        _db.FlavorTreat.Add( new FlavorTreat() { FlavorId = FlavorId, treat.TreatId == id});
+        _db.FlavorTreats.Add( new FlavorTreat() { FlavorId = FlavorId, TreatId = treat.TreatId});
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -78,9 +78,7 @@ namespace PierresAuth.Controllers
     public ActionResult Delete(int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
-      _db.Treats.Remove(thisTreat);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      return View(thisTreat);
     }
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
@@ -93,8 +91,8 @@ namespace PierresAuth.Controllers
     [HttpPost]
     public ActionResult DeleteFlavor(int joinId)
     {
-      FlavorTreat joinEntry = _db.FlavorTreat.FirstOrDefault(x => x.FlavorTreatId == joinId);
-      _db.FlavorTreat.Remove(joinEntry);
+      FlavorTreat joinEntry = _db.FlavorTreats.FirstOrDefault(x => x.FlavorTreatId == joinId);
+      _db.FlavorTreats.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
