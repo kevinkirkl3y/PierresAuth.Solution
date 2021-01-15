@@ -6,7 +6,7 @@ namespace PierresAuth.Models
   {
     public DbSet<Flavor> Flavors { get; set; }
     public DbSet<Treat> Treats { get; set; }
-    public DbSet<FlavorTreat> FlavorTreat { get; set; }
+    public DbSet<FlavorTreat> FlavorTreats { get; set; }
     public PierresAuthContext(DbContextOptions options) : base(options) { }
   }
 }
