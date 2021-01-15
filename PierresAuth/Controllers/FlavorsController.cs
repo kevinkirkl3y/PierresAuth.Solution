@@ -4,15 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace PierresAuth.Controllers
 {
+  [Authorize]
   public class FlavorsController : Controller
   {
     private readonly PierresAuthContext _db;
-    public FlavorsController(PierresAuthContext db)
+    private readonly UserManager<ApplicationUser> _userManager;
+    public FlavorsController(UserManager<ApplicationUser> userManager, PierresAuthContext db)
     {
       _db = db;
+      _userManager = userManager;
     }
     public ActionResult Index()
     {
@@ -32,8 +39,11 @@ namespace PierresAuth.Controllers
       return View();
     }
     [HttpPost]
-    public ActionResult Create(Flavor flavor, int TreatId)
+    public async Task<ActionResult> Create(Flavor flavor, int TreatId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      flavor.User = currentUser;
       _db.Flavors.Add(flavor);
       if (TreatId != 0)
       {
@@ -49,8 +59,11 @@ namespace PierresAuth.Controllers
       return View(thisFlavor);
     }
     [HttpPost]
-    public ActionResult Edit(Flavor flavor, int TreatId)
+    public async Task<ActionResult> Edit(Flavor flavor, int TreatId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      flavor.User = currentUser;
       if (TreatId != 0)
       {
         _db.FlavorTreats.Add(new FlavorTreat() { TreatId = TreatId, FlavorId = flavor.FlavorId });
@@ -66,8 +79,11 @@ namespace PierresAuth.Controllers
       return View(thisFlavor);
     }
     [HttpPost]
-    public ActionResult AddTreat(Flavor flavor, int TreatId)
+    public async Task<ActionResult> AddTreat(Flavor flavor, int TreatId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      flavor.User = currentUser;
       if(TreatId != 0 )
       {
         _db.FlavorTreats.Add( new FlavorTreat() { TreatId = TreatId, FlavorId = flavor.FlavorId});
@@ -81,16 +97,22 @@ namespace PierresAuth.Controllers
       return View(thisFlavor);
     }
     [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id)
+    public async Task<ActionResult> DeleteConfirmed(Flavor flavor, int id)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      flavor.User = currentUser;
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
       _db.Flavors.Remove(thisFlavor);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
     [HttpPost]
-    public ActionResult DeleteTreat(int joinId)
+    public async Task<ActionResult> DeleteTreat(Flavor flavor, int joinId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      flavor.User = currentUser;
       FlavorTreat joinEntry = _db.FlavorTreats.FirstOrDefault(x => x.FlavorTreatId == joinId);
       _db.FlavorTreats.Remove(joinEntry);
       _db.SaveChanges();

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PierresAuth.Models;
 
 namespace PierresAuth.Migrations
 {
     [DbContext(typeof(PierresAuthContext))]
-    partial class PierresAuthContextModelSnapshot : ModelSnapshot
+    [Migration("20210115232737_AuthFlavors")]
+    partial class AuthFlavors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
