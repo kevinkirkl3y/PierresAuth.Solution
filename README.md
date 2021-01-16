@@ -5,10 +5,7 @@
 #### by _**Kevin Kirkley**_
 
 ## Description
-Pierre is back again, this time wanting a MVC application that features Authentication. 
-   
-
-
+Pierre is back again, this time wanting a MVC application that features Authentication. This program allows users to list out the delicious baked treats that the bakery has in stock. It also allows users to generate Flavor profiles which then can be applied to the treats in order to classify them. Using Identity, the creation, editing and deletion of both the Treat class objects as well as the Flavor class objects require Authorization provided through account creation and login. Users can create an account, log in to that account and log out of the account. 
 
 ## User Stories
 
@@ -52,16 +49,9 @@ git clone https://github.com/kevinkirkl3y/PierresAuth.Solution.git
 * Navigate to `PierresAuth.Solution/PierresAuth` and type `dotnet ef migrations add <MigrationName>` into the terminal. 
 * Then, type `dotnet ef database update` into the terminal to create your database tables.
 
-### DB SQL Schema Snippet
-
-* Paste this Schema Create Statement directly into MySQLWorkbench to create this database and its tables. 
-```
-
-```
-
 
 ## Known Bugs
-
+* No known bugs at this time. 1.15.2021
 
 
 ## Support and contact detail
