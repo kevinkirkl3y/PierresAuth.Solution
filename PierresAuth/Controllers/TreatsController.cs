@@ -11,6 +11,7 @@ using System.Security.Claims;
 
 namespace PierresAuth.Controllers
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly PierresAuthContext _db;
