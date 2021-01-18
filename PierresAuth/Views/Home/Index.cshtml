@@ -1,14 +1,41 @@
 @{
   Layout = "_Layout";
 }
+@using PierresAuth.Models;
 <div class="container">
   <h1 class="jumbotron">Pierre's French Bakery</h1>
   <hr />
   <div class="box">
-
+    <h3>Todays Goods:</h3>
+    @if (@ViewBag.AllTreats.Count == 0)
+    {
+      <p>There are currently no goods in the display case.</p>
+    }
+    else
+    {
+      <ul class="no-bullets">
+      @foreach (Treat treat in ViewBag.Treats)
+      {
+        <li>@Html.ActionLink($"{treat.TreatType}", "Details", "Treats", new { id = treat.TreatId})</li> <br>
+      }
+      </ul>
+    }
   </div>
   <div class="box">
-    
+    <h3>Todays Flavors:</h3>
+    @if (@ViewBag.AllFlavors.Count == 0)
+    {
+      <p>There are currently no goods in the display case.</p>
+    }
+    else
+    {
+      <ul class="no-bullets">
+      @foreach (Flavor flavor in @ViewBag.Flavors)
+      {
+        <li>@Html.ActionLink($"{flavor.FlavorType}", "Details", "Flavors", new { id = flavor.FlavorId})</li> <br>
+      }
+      </ul>
+    }
   </div>
 
   <p>@Html.ActionLink("Create Account", "Index", "Account")</p><br>
