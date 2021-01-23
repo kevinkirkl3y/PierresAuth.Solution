@@ -34,7 +34,7 @@ git clone https://github.com/kevinkirkl3y/PierresAuth.Solution.git
 3. Open within your text editor and navigate to the `PierresAuth.Solution/PierresAuth` folder and run `dotnet restore` in your console.
 
 ### AppSettings
-* This project requires an AppSettings file. Create your `appsettings.json` file in the main RecordCollection file following the format below. Use your unique password that you created duing MySQLWorkbench installation:
+* This project requires an AppSettings file. Create your `appsettings.json` file in the main PierresAuth file following the format below. Use your unique password that you created duing MySQLWorkbench installation:
 
 ```  
 {
@@ -67,6 +67,8 @@ _Contact Kevin Kirkley at [kevinmkirkley@gmail.com](mailto:kevinmkirkley@gmail.c
 * _netcore2.2_
 * _MySQL_
 * _MySQLWorkbench_
+* _Entity_
+* _Identity_
 
 
 ### License
